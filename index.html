@@ -8,21 +8,28 @@
     <link rel="stylesheet" href="./assets/style.css">
     <title>Document</title>
 </head>
-<body class="row min-vh-100">
+<body class="min-vh-100">
     <header>
         <div class="col-12  bg-dark text-light sticky-top d-flex flex-column p-4 p-lg-3">
             <h1 class="text-center">Weather Dashboard</h1>
         </div>
     </header>
-    <div id="city-search">
 
-    </div>
-    <div id="current-weather">
+    <div id = "top" class=" row flex-row justify-space-between">
 
-    </div>
-    <div id = "five-day">
+     <div class = "col-12 col-md-2">
+       <h3 class="card-header">Search City</h3>
+       <form id = "city-search" class ="card-body">
+           <label class="form-label" for="city">Enter City</label>
+           <input type="text" id="city" name="city" class="form-input w-100 mb-1">
+           <button type="submit" class="w-100">Search</button>
+       </form>
+       </div>
 
+    <div class= "col-12 col-md-10 border">
+        <h2>weather</h2>
     </div>
+</div>
 
     <script  src="assets/script.js"></script>
 </body>
