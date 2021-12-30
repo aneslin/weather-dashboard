@@ -5,6 +5,7 @@ const todayWindEl = document.querySelector("#today-wind")
 const todayUvEl = document.querySelector("#today-uv")
 const apiKey = "45eaf3a8deab03958024ee73f2ab65e0"
 const uvWarnEl = document.querySelector("#uvWarn")
+const curWatherIconEl = document.querySelector('#headIcon')
 const fiveDayEl = document.querySelector("#forcast")
 var city 
 
@@ -21,7 +22,7 @@ let longLat= function(cityName){
         fetch(currentEndpoint).then(function(response){
             if (response.ok){
                 response.json().then(function(data){
-                    console.log(data.coord)
+                    
                     city = data.name
                     getWeather(data.coord)
                 });
@@ -50,30 +51,40 @@ let createForcast = function(data){
 for (let i = 1; i < 6; i ++){
 let dayWrapperEl = document.createElement("div")
 let weatherListEl = document.createElement("ul")
-weatherListEl.classList.add("forcast-block")
+dayWrapperEl.classList.add("forcast-block")
 let dateEl = document.createElement("li")
+let imgWrapperel = document.createElement("li")
+let weatherIcon=document.createElement("img")
 let tempEl = document.createElement("li")
 let windEl = document.createElement("li")
+weatherListEl.classList.add("noList")
 let humidityEl = document.createElement("li")
 dateEl.textContent = currentDate(data[i].dt)
-tempEl.textContent = data[i].temp.day
-windEl.textContent=data[i].wind_speed
-humidityEl.textContent=data[i].humidity
+console.log("daily weather icon " + getIcon(data[i].weather[0].icon))
+weatherIcon.setAttribute("src", getIcon(data[i].weather[0].icon))
+imgWrapperel.appendChild(weatherIcon)
+tempEl.textContent = `Temp: ${data[i].temp.day}° F`
+windEl.textContent=`Wind: ${data[i].wind_speed} MPH`
+humidityEl.textContent=`Humidity: ${data[i].humidity}%`
 weatherListEl.appendChild(dateEl)
+weatherListEl.appendChild(imgWrapperel)
 weatherListEl.appendChild(tempEl)
 weatherListEl.appendChild(windEl)
 weatherListEl.appendChild(humidityEl)
 dayWrapperEl.appendChild(weatherListEl)
 fiveDayEl.appendChild(dayWrapperEl)
 
-
-
 }}
 
+let getIcon = function(iconId){
+    return `http://openweathermap.org/img/wn/${iconId}@2x.png`
+}
 
 let createToday = function(data){
     let currentday = currentDate(data.dt) 
     cityNameEl.textContent=city + ' ' + currentday 
+    curWatherIconEl.setAttribute("src", getIcon(data.weather[0].icon))
+   
     todayTempEl.textContent= data.temp + "° F"
     todayHumidEl.textContent= data.humidity + "%"
     todayWindEl.textContent= data.wind_speed +" MPH"

@@ -18,5 +18,10 @@
     list-style: none;
     background-color: darkgray;
     color:white;
-    border-radius: 15px;
+
+    margin: 15px;
+}
+
+.noList {
+    list-style: none;
 }
