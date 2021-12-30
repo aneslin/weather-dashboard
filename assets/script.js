@@ -7,6 +7,9 @@ const apiKey = "45eaf3a8deab03958024ee73f2ab65e0"
 const uvWarnEl = document.querySelector("#uvWarn")
 const curWatherIconEl = document.querySelector('#headIcon')
 const fiveDayEl = document.querySelector("#forcast")
+//const submitEl = document.querySelector("#search")
+const cityForm = document.querySelector("#city-search")
+const cityEl = document.querySelector("#city")
 var city 
 
 let currentDate = function(epoch) {
@@ -102,10 +105,19 @@ let createToday = function(data){
    
     }
 
+let cityHandler = function(event){
+    event.preventDefault();
+    let clearBlock = document.getElementById("forcast")
+    while(clearBlock.firstChild){
+        clearBlock.removeChild(clearBlock.lastChild)
+    }
+    longLat(cityEl.value)
+    
+}  
 
+cityForm.addEventListener("submit",cityHandler)
 
 
 /* cannot get uvi with city weather, so pull lon/lat to pass into onecall */
 
-longLat("hartford")
 
