@@ -14,3 +14,9 @@
     color: white;
 }
 
+.forcast-block{
+    list-style: none;
+    background-color: darkgray;
+    color:white;
+    border-radius: 15px;
+}
