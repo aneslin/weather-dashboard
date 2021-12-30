@@ -24,9 +24,10 @@ let getToday = function(coords){
 };
 
 let createToday = function(data){
-    cityNameEl.textContent=city
-    date = new Date(parseInt(data.dt) *1000)
-    console.log(date)
+    let date = new Date(parseInt(data.dt) *1000)
+    let currentday = `${date.getMonth()}-${date.getDay()}-${date.getFullYear()}` 
+    cityNameEl.textContent=city + ' ' + currentday 
+    
     todayTempEl.textContent= data.temp + "° F"
     todayHumidEl.textContent= data.humidity + "%"
     todayWindEl.textContent= data.wind_speed +" MPH"
@@ -61,4 +62,3 @@ let longLat= function(cityName){
 };
 longLat("hartford")
 
-/* epch to TZ from https://stackoverflow.com/questions/44060804/convert-epoch-time-to-human-readable-with-specific-timezone */
