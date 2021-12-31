@@ -20,6 +20,7 @@ With each city searched, a button will be added to the side column. On a click t
 * Javascript
 * HTML
 * CSS
+* Bootstrap
 
 ## Deployed URL
 [https://aneslin.github.io/weather-dashboard/](https://aneslin.github.io/weather-dashboard/)
