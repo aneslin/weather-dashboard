@@ -66,7 +66,6 @@ let windEl = document.createElement("li")
 weatherListEl.classList.add("noList")
 let humidityEl = document.createElement("li")
 dateEl.textContent = currentDate(data[i].dt)
-console.log("daily weather icon " + getIcon(data[i].weather[0].icon))
 weatherIcon.setAttribute("src", getIcon(data[i].weather[0].icon))
 imgWrapperel.appendChild(weatherIcon)
 tempEl.textContent = `Temp: ${data[i].temp.day}° F`
@@ -110,21 +109,30 @@ let createToday = function(data){
 
 let cityHandler = function(event){
     event.preventDefault();
-    let clearBlock = document.getElementById("forcast")
-    while(clearBlock.firstChild){
-        clearBlock.removeChild(clearBlock.lastChild)
-    }
-    
+    deleteOld("forcast")
+
+
     longLat(cityEl.value)
     
 }  
 
+let deleteOld= function(parent){
+    let oldblock = document.getElementById(parent)
+    while (oldblock.firstChild){
+        oldblock.removeChild(oldblock.lastChild)
+    }
+}
+
+
 function save(id, text){
     if (localStorage.getItem("weatherButton")){
     currentItems = JSON.parse(localStorage.getItem('weatherButton'))
+    if (currentItems[id]){
+        return
+    }else{
     currentItems[id] = text
     localStorage.setItem("weatherButton", JSON.stringify(currentItems))
-    } else {
+   } } else {
         let savedItems = {}
         savedItems[id]=text
         localStorage.setItem("weatherButton", JSON.stringify(savedItems))
@@ -133,6 +141,8 @@ function save(id, text){
 
 
 function load(){
+    deleteOld("buttonList")
+    
     if (localStorage.getItem("weatherButton")){
         let cityList = JSON.parse(localStorage.getItem("weatherButton"))
     
@@ -148,6 +158,18 @@ function load(){
 
 }
 }
+
+
+
+
+buttonListel.addEventListener("click",function (event){
+    event.preventDefault()
+    if (event.target.tagName === "BUTTON"){
+        console.log(event.target.textContent)
+        deleteOld("forcast")
+        longLat(event.target.textContent)
+    }
+})
 
 
 
