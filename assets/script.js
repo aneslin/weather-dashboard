@@ -11,18 +11,19 @@ const fiveDayEl = document.querySelector("#forcast")
 //const submitEl = document.querySelector("#search")
 const cityForm = document.querySelector("#city-search")
 const cityEl = document.querySelector("#city")
+const buttonListel = document.querySelector("#buttonList")
 var city 
 
 let currentDate = function(epoch) {
     let date = new Date(parseInt(epoch) *1000)
-    console.log(date)
+   
     let currentday = `${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`
     return currentday
 }
 
 let longLat= function(cityName){
     {let currentEndpoint = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`
-        console.log(currentEndpoint)
+      
         fetch(currentEndpoint).then(function(response){
             if (response.ok){
                 response.json().then(function(data){
@@ -38,13 +39,14 @@ let longLat= function(cityName){
 /* take coords from lonLat to get onecall data */
 let getWeather = function(coords){
     let currentEndpoint = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=imperial`
-    console.log(currentEndpoint)
+   
     fetch(currentEndpoint).then(function(response){
         if (response.ok){
             response.json().then(function(data){
-            
+                save(`data-${cityEl.value}`, cityEl.value)
                 createForcast(data.daily)
                 createToday(data.current)
+                load()
             });
         }
     });
@@ -112,9 +114,42 @@ let cityHandler = function(event){
     while(clearBlock.firstChild){
         clearBlock.removeChild(clearBlock.lastChild)
     }
+    
     longLat(cityEl.value)
     
 }  
+
+function save(id, text){
+    if (localStorage.getItem("weatherButton")){
+    currentItems = JSON.parse(localStorage.getItem('weatherButton'))
+    currentItems[id] = text
+    localStorage.setItem("weatherButton", JSON.stringify(currentItems))
+    } else {
+        let savedItems = {}
+        savedItems[id]=text
+        localStorage.setItem("weatherButton", JSON.stringify(savedItems))
+    }
+}
+
+
+function load(){
+    if (localStorage.getItem("weatherButton")){
+        let cityList = JSON.parse(localStorage.getItem("weatherButton"))
+    
+    for (const [key,value] of Object.entries(cityList)){
+        let buttonWrapper = document.createElement("li");
+        let button = document.createElement("button")
+        button.setAttribute("type", "button")
+        button.setAttribute("data",key)
+        button.textContent = value
+        buttonWrapper.appendChild(button)
+        buttonListel.appendChild(buttonWrapper)
+    }
+
+}
+}
+
+
 
 cityForm.addEventListener("submit",cityHandler)
 
