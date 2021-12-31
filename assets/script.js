@@ -33,7 +33,7 @@ let longLat= function(cityName){
                     city = data.name
                     getWeather(data.coord)
                 });
-            }
+            } else {window.alert("something went wrong")}
         });
     };
 } else {
@@ -131,6 +131,7 @@ let deleteOld= function(parent){
 
 
 function save(id, text){
+    id = id.toLowerCase()
     if (localStorage.getItem("weatherButton")){
     currentItems = JSON.parse(localStorage.getItem('weatherButton'))
     if (currentItems[id]){
