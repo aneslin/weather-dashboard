@@ -25,7 +25,7 @@ With each city searched, a button will be added to the side column. On a click t
 [https://aneslin.github.io/weather-dashboard/](https://aneslin.github.io/weather-dashboard/)
 
 ## Screenshot
-![screenshot of image](./assets/deployedScreenshot.JPG)
+![screenshot of image](./assets/deployedScreenshot.jpg)
 
 ## Notes
 API key may be disabled, in which case the app will not work.  
