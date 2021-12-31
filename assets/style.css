@@ -15,13 +15,14 @@
 }
 
 .forcast-block{
-    list-style: none;
+    padding-left: 0px;
     background-color: darkgray;
     color:white;
 
-    margin: 15px;
+    
 }
 
 .noList {
     list-style: none;
+    padding: 0px 10px 0px 10px
 }

@@ -4,7 +4,7 @@ const todayHumidEl = document.querySelector("#today-humid")
 const todayWindEl = document.querySelector("#today-wind")
 const todayUvEl = document.querySelector("#today-uv")
 //note: this api key is disabled.  generate a new one before resuming
-const apiKey = "45eaf3a8deab03958024ee73f2ab65e0"
+const apiKey = "60d845dbd3ae158454305e1eef9657b7"
 const uvWarnEl = document.querySelector("#uvWarn")
 const curWatherIconEl = document.querySelector('#headIcon')
 const fiveDayEl = document.querySelector("#forcast")
