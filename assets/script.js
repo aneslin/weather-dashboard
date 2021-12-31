@@ -158,6 +158,7 @@ function load(){
         let button = document.createElement("button")
         button.setAttribute("type", "button")
         button.setAttribute("data",key)
+        button.classList.add("mb-1", "w-100", "capitalize")
         button.textContent = value
         buttonWrapper.appendChild(button)
         buttonListel.appendChild(buttonWrapper)
