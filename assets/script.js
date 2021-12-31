@@ -22,6 +22,8 @@ let currentDate = function(epoch) {
 }
 
 let longLat= function(cityName){
+    if (cityName){
+
     {let currentEndpoint = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`
       
         fetch(currentEndpoint).then(function(response){
@@ -34,6 +36,10 @@ let longLat= function(cityName){
             }
         });
     };
+} else {
+    window.alert("invalid city")
+}
+
 };
 
 /* take coords from lonLat to get onecall data */
@@ -170,8 +176,10 @@ buttonListel.addEventListener("click",function (event){
         longLat(event.target.textContent)
     }
 })
-
-
+document.addEventListener("DOMContentLoaded",function(){
+    console.log("loading!!!")
+    load()
+})
 
 cityForm.addEventListener("submit",cityHandler)
 
