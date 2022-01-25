@@ -1,5 +1,5 @@
 # Weather Dashboard
-![Notes](#notes)  
+[Notes](#notes)  
 (license-badge)[https://img.shields.io/ore/l/totaleconomy]
 
 ## Description
